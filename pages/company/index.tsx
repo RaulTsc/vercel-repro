@@ -1,9 +1,9 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import { CompanyHeader } from "./components/CompanyHeader";
+import { CompanyHeader } from "../../components/company/CompanyHeader";
 import { Footer } from "../../components/Footer";
-import { ProblemStart } from "./components/ProblemStart";
-import { Values } from "./components/Values";
+import { ProblemStart } from "../../components/company/ProblemStart";
+import { Values } from "../../components/company/Values";
 import { FormattedMessage } from "react-intl";
 import Link from "next/link";
 import { Nav } from "../../components/Nav";

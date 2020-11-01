@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
-import { HeaderWaves } from "../../../components/HeaderWaves";
+import { HeaderWaves } from "../HeaderWaves";
 import { FormattedMessage } from "react-intl";
 
 const useStyles = makeStyles((theme) => ({

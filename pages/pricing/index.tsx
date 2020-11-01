@@ -1,6 +1,6 @@
 import React from "react";
-import { PricingHeader } from "./components/PricingHeader";
-import { PricingBody } from "./components/PricingBody";
+import { PricingHeader } from "../../components/pricing/PricingHeader";
+import { PricingBody } from "../../components/pricing/PricingBody";
 import { Footer } from "../../components/Footer";
 import { Nav } from "../../components/Nav";
 

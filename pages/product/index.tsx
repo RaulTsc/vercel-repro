@@ -1,7 +1,7 @@
 import React from "react";
-import { ProductHeader } from "./components/ProductHeader";
-import { HotelManagementSystem } from "./components/HotelManagementSystem";
-import { DirectBookingTechnology } from "./components/DirectBookingTechnology";
+import { ProductHeader } from "../../components/product/ProductHeader";
+import { HotelManagementSystem } from "../../components/product/HotelManagementSystem";
+import { DirectBookingTechnology } from "../../components/product/DirectBookingTechnology";
 import { Footer } from "../../components/Footer";
 import { Nav } from "../../components/Nav";
 
