@@ -6,6 +6,7 @@ const acceptLanguages = ["en", "fr"];
 const defaultLocale = acceptLanguages[0];
 
 const getLocale = async (ctx: NextPageContext) => {
+  console.log("hereee");
   try {
     const cookieLocale = nextCookie(ctx).locale;
     let locale = defaultLocale;
@@ -25,10 +26,12 @@ const getLocale = async (ctx: NextPageContext) => {
         : defaultLocale;
       cookie.set("locale", locale, { expires: 365 });
     }
-    return locale;
+    console.log("normalLocale->>", locale);
+    return locale || "en";
   } catch (error) {
     console.error(error);
-    return defaultLocale;
+    console.log("defaultLocale->>", defaultLocale);
+    return defaultLocale || "en";
   }
 };
 

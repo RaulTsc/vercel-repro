@@ -141,7 +141,23 @@ export default function GetStarted() {
                 />
               </Grid>
               <Grid item xs={12} style={{ marginTop: "20px" }}>
-                <Button fullWidth variant="contained" color="primary">
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  onClick={async () => {
+                    await fetch("/api/contact", {
+                      method: "post",
+                      body: JSON.stringify({
+                        firstName,
+                        lastName,
+                        email,
+                        phoneNumber,
+                        hotelDescription,
+                      }),
+                    });
+                  }}
+                >
                   <FormattedMessage id="App.common.submit" />
                 </Button>
               </Grid>

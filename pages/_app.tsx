@@ -116,7 +116,7 @@ export default class MyApp extends App<{ locale: any; messages: any }> {
 
     return (
       <MuiThemeProvider theme={theme}>
-        <IntlProvider locale={locale} messages={messages}>
+        <IntlProvider locale={locale || "en"} messages={messages}>
           <Component {...pageProps} />
         </IntlProvider>
       </MuiThemeProvider>
