@@ -17,7 +17,7 @@ if (typeof window === "undefined") {
 export const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#4a90e2",
+      main: "#2478cc",
     },
     grey: {
       A100: "#2a3039",
@@ -29,12 +29,13 @@ export const theme = createMuiTheme({
   typography: {
     fontFamily: `"Nunito", "Roboto", "Helvetica", "Arial", sans-serif`,
     h1: {
-      fontSize: "2.25rem", // 36px
+      fontSize: "2.375rem", // 38px
+      lineHeight: "48px",
       color: "#2a3039",
       fontWeight: 600,
     },
     h2: {
-      fontSize: "1.875rem", // 30px
+      fontSize: "2rem", // 30px
       color: "#2a3039",
     },
     h3: {
@@ -87,7 +88,7 @@ export const theme = createMuiTheme({
       root: {
         borderRadius: "20px",
         textTransform: "none",
-        padding: "6px 20px",
+        padding: "6px 24px !important",
         fontSize: "16px",
         fontWeight: 600,
         boxShadow: "none !important",

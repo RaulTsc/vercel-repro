@@ -14,7 +14,7 @@ export const sendMail = async ({
 }: any): Promise<IGmailResponse> => {
   const email = "raultom111@gmail.com";
   const password = "BQRGU4fT8M";
-  const fromName = (partner && partner.name) || "EverReal";
+  const fromName = (partner && partner.name) || "Website";
   const from = `"${fromName}" <${email}>`;
   const transport = `smtps://${encodeURIComponent(
     email

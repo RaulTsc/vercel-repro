@@ -110,7 +110,7 @@ export const PricingBody = () => {
           <Grid item sm={6} xs={12}>
             <Paper className={classes.paper} elevation={6}>
               <Typography variant="h3" style={{ fontWeight: 600 }}>
-                Hotelful
+                Visitor
               </Typography>
               <Typography variant="subtitle2" style={{ marginTop: "10px" }}>
                 The all-in-one digital solution your hotel needs

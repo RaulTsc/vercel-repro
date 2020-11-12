@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "15px",
     borderRight: `1px solid ${theme.palette.grey.A400}`,
   },
-  title: {
+  footerMenuTitle: {
     fontWeight: 600,
     textTransform: "uppercase",
     paddingBottom: "10px",
@@ -79,6 +79,9 @@ const useStyles = makeStyles((theme) => ({
     padding: "0px 40px",
     color: theme.palette.grey.A100,
     marginTop: "30px",
+    [theme.breakpoints.down("xs")]: {
+      padding: "0px",
+    },
   },
   footerLearnMore: {
     textAlign: "center",
@@ -90,7 +93,19 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "rgba(0, 0, 0, 0.07) 0px 5px 14px 2px",
     width: "70%",
     [theme.breakpoints.down("xs")]: {
-      width: "85%",
+      width: "75%",
+    },
+  },
+  inner: {
+    padding: "60px",
+    [theme.breakpoints.down("xs")]: {
+      padding: "40px",
+    },
+  },
+  title: {
+    fontWeight: 600,
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1.5rem",
     },
   },
 }));
@@ -150,13 +165,8 @@ export const Footer = (props: IFooterProps) => {
                   borderTopRightRadius: "6px",
                 }}
               ></div>
-              <div style={{ padding: "60px" }}>
-                <Typography
-                  variant="h2"
-                  style={{
-                    fontWeight: 600,
-                  }}
-                >
+              <div className={classes.inner}>
+                <Typography variant="h2" className={classes.title}>
                   <FormattedMessage id={props.titleLocale} />
                 </Typography>
                 {props.subtitleLocale && (
@@ -190,7 +200,7 @@ export const Footer = (props: IFooterProps) => {
 
       <Grid container spacing={2} className={classes.container}>
         <Grid item xs={12} sm={4} md={3}>
-          <Typography variant="body2" className={classes.title}>
+          <Typography variant="body2" className={classes.footerMenuTitle}>
             <FormattedMessage id="App.footer.product" />
           </Typography>
           <ul style={{ listStyleType: "none", padding: "0px" }}>
@@ -215,7 +225,7 @@ export const Footer = (props: IFooterProps) => {
           </ul>
         </Grid>
         <Grid item xs={12} sm={4} md={3}>
-          <Typography variant="body2" className={classes.title}>
+          <Typography variant="body2" className={classes.footerMenuTitle}>
             <FormattedMessage id="App.footer.docsAndHelp" />
           </Typography>
           <ul style={{ listStyleType: "none", padding: "0px" }}>
@@ -231,7 +241,7 @@ export const Footer = (props: IFooterProps) => {
           </ul>
         </Grid>
         <Grid item xs={12} sm={4} md={3}>
-          <Typography variant="body2" className={classes.title}>
+          <Typography variant="body2" className={classes.footerMenuTitle}>
             <FormattedMessage id="App.footer.aboutUs" />
           </Typography>
           <ul style={{ listStyleType: "none", padding: "0px" }}>
@@ -247,7 +257,7 @@ export const Footer = (props: IFooterProps) => {
           </ul>
         </Grid>
         <Grid item xs={12} sm={4} md={3}>
-          <Typography variant="body2" className={classes.title}>
+          <Typography variant="body2" className={classes.footerMenuTitle}>
             <FormattedMessage id="App.footer.inquiries" />
           </Typography>
           <ul style={{ listStyleType: "none", padding: "0px" }}>

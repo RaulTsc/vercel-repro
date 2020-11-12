@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     maxWidth: "1080px",
-    margin: "140px auto 0px auto",
+    margin: "120px auto 0px auto",
   },
   title: {
     textAlign: "center",
