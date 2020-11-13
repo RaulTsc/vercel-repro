@@ -1,9 +1,9 @@
 import React from "react";
-import { ProductHeader } from "../../components/product/ProductHeader";
-import { HotelManagementSystem } from "../../components/product/HotelManagementSystem";
-import { DirectBookingTechnology } from "../../components/product/DirectBookingTechnology";
-import { Footer } from "../../components/Footer";
-import { Nav } from "../../components/Nav";
+import { ProductHeader } from "../../website/components/product/ProductHeader";
+import { HotelManagementSystem } from "../../website/components/product/HotelManagementSystem";
+import { DirectBookingTechnology } from "../../website/components/product/DirectBookingTechnology";
+import { Footer } from "../../website/components/Footer";
+import { Nav } from "../../website/components/Nav";
 
 export default function Product() {
   return (

@@ -1,6 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 import * as nodemailer from "nodemailer";
+import { applySession } from "next-session";
+import { sessionOptions } from "../../app/auth";
 
 interface IGmailResponse extends Object {}
 
@@ -41,6 +43,8 @@ export const sendMail = async ({
 };
 
 export default async (req, res) => {
+  await applySession(req, res, sessionOptions);
+
   if (req.method !== "POST") {
     return res.status(400);
   }
@@ -62,7 +66,10 @@ export default async (req, res) => {
     text: JSON.stringify(body, null, 2),
   });
 
-  console.log("Sent email to tomescu.raul@gmail.com");
+  console.log(
+    "Sent email to tomescu.raul@gmail.com",
+    req.session.isAuthenticated
+  );
 
   res.json({});
 };

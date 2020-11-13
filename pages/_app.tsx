@@ -1,17 +1,25 @@
 import App from "next/app";
 import React from "react";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import { Provider } from "react-redux";
+import MomentUtils from "@date-io/moment";
+import "moment/locale/de";
+import "moment/locale/ro";
 
-import IntlProvider from "../components/IntlProvider";
+import IntlProvider from "../website/components/IntlProvider";
 
 import getLocale from "../utils/getLocale";
 import getMessages from "../utils/getMessages";
 
 import "../styles/globals.css";
 
+import store from "../app/store";
+
 if (typeof window === "undefined") {
   // dom parser for FormatedHTMLMessages
   global.DOMParser = new (require("jsdom").JSDOM)().window.DOMParser;
+  global.window = new (require("jsdom").JSDOM)().window;
 }
 
 export const theme = createMuiTheme({
@@ -37,14 +45,17 @@ export const theme = createMuiTheme({
     h2: {
       fontSize: "2rem", // 30px
       color: "#2a3039",
+      fontWeight: 600,
     },
     h3: {
       fontSize: "1.625rem", // 26px
       color: "#2a3039",
+      fontWeight: 600,
     },
     h4: {
       fontSize: "1.5rem", // 24px
       color: "#2a3039",
+      fontWeight: 600,
     },
     h5: {
       fontSize: "1.375rem", // 22px
@@ -84,43 +95,36 @@ export const theme = createMuiTheme({
           "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12) !important",
       },
     },
-    MuiButton: {
-      root: {
-        borderRadius: "20px",
-        textTransform: "none",
-        padding: "6px 24px !important",
-        fontSize: "16px",
-        fontWeight: 600,
-        boxShadow: "none !important",
-        height: "40px",
-      },
-    },
   },
 });
 
-export default class MyApp extends App<{ locale: any; messages: any }> {
-  static async getInitialProps({ Component, ctx }) {
-    let pageProps = {};
+function MyApp(props: any) {
+  const { Component, pageProps, locale, messages } = props;
 
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
-    }
-
-    const locale = await getLocale(ctx);
-    const messages = await getMessages(locale);
-
-    return { pageProps, locale, messages };
-  }
-
-  render() {
-    const { Component, pageProps, locale, messages } = this.props;
-
-    return (
-      <MuiThemeProvider theme={theme}>
-        <IntlProvider locale={locale || "en"} messages={messages}>
-          <Component {...pageProps} />
-        </IntlProvider>
-      </MuiThemeProvider>
-    );
-  }
+  return (
+    <MuiThemeProvider theme={theme}>
+      <IntlProvider locale={locale || "en"} messages={messages}>
+        <Provider store={store}>
+          <MuiPickersUtilsProvider utils={MomentUtils}>
+            <Component {...pageProps} />
+          </MuiPickersUtilsProvider>
+        </Provider>
+      </IntlProvider>
+    </MuiThemeProvider>
+  );
 }
+
+MyApp.getInitialProps = async (appContext) => {
+  let pageProps = {};
+
+  if (appContext.Component.getInitialProps) {
+    pageProps = await appContext.Component.getInitialProps(appContext);
+  }
+
+  const locale = await getLocale(appContext.ctx);
+  const messages = await getMessages(locale);
+
+  return { pageProps, locale, messages };
+};
+
+export default MyApp;

@@ -11,14 +11,14 @@ import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import TimerIcon from "@material-ui/icons/Timer";
 import WebIcon from "@material-ui/icons/Web";
 import Link from "next/link";
-import { Footer } from "../components/Footer";
-import { Nav } from "../components/Nav";
-import { ChannelManager } from "../components/home/ChannelManager";
-import { ReservationSystem } from "../components/home/ReservationSystem";
-import { OwnBookingWebsite } from "../components/home/OwnBookingWebsite";
-import { DirectBookingTechnology } from "../components/home/DirectBookingTechnology";
-import { Header } from "../components/home/Header";
-import { Helmet } from "react-helmet";
+import { Footer } from "../website/components/Footer";
+import { Nav } from "../website/components/Nav";
+import { ChannelManager } from "../website/components/home/ChannelManager";
+import { ReservationSystem } from "../website/components/home/ReservationSystem";
+import { OwnBookingWebsite } from "../website/components/home/OwnBookingWebsite";
+import { DirectBookingTechnology } from "../website/components/home/DirectBookingTechnology";
+import { Header } from "../website/components/home/Header";
+import Head from "next/head";
 import { FormattedMessage, useIntl } from "react-intl";
 
 const useStyles = makeStyles((theme) => ({
@@ -152,9 +152,10 @@ const Home = () => {
 
   return (
     <div>
-      <Helmet>
+      <Head>
         <title>{intl.formatMessage({ id: "App.common.pageTitle" })}</title>
-      </Helmet>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <Nav />
       <Header />
       <ChannelManager />

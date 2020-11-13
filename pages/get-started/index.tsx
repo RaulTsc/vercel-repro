@@ -1,5 +1,5 @@
 import React from "react";
-import { Footer } from "../../components/Footer";
+import { Footer } from "../../website/components/Footer";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
@@ -8,7 +8,7 @@ import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 import { FormattedMessage, useIntl } from "react-intl";
 import Link from "next/link";
-import { Nav } from "../../components/Nav";
+import { Nav } from "../../website/components/Nav";
 
 const useStyles = makeStyles((theme) => ({
   inner: {
