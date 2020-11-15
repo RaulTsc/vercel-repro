@@ -1,4 +1,6 @@
-module.exports = {
+const withTM = require("next-transpile-modules")(["@fullcalendar"]);
+
+module.exports = withTM({
   serverRuntimeConfig: {
     oauth: {
       client: {
@@ -33,4 +35,4 @@ module.exports = {
       },
     },
   },
-};
+});

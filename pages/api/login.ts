@@ -9,8 +9,6 @@ import { sessionOptions } from "../../app/auth";
 export default async (req, res) => {
   await applySession(req, res, sessionOptions);
 
-  console.log("isAuth", req.session.isAuthenticated);
-
   if (req.method !== "POST") {
     return res.status(400);
   }
@@ -32,8 +30,6 @@ export default async (req, res) => {
       scope: "offline *",
     });
 
-    console.log("response", data, status);
-
     req.session.isAuthenticated = true;
 
     res.json({
@@ -41,7 +37,6 @@ export default async (req, res) => {
       expiresIn: data.expires_in,
     });
   } catch (err) {
-    console.log("got err", err.response.status);
     res.status(err.response.status).json(err.response.data);
   }
 };

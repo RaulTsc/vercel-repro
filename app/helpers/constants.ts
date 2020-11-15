@@ -12,3 +12,19 @@ export const PAGE_SIZES = {
   NORMAL: "1000px",
   LARGE: "1200px",
 };
+
+export const COLOR_LIST = [
+  "cyan",
+  "teal",
+  "green",
+  "lime",
+  "yellow",
+  "amber",
+  "orange",
+  "deepOrange",
+  "brown",
+  "grey",
+  "pink",
+  "purple",
+  "indigo",
+];

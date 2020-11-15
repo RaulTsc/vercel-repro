@@ -64,7 +64,6 @@ export default function SignupPage(props: ISignupPageProps) {
         <Paper elevation={0} className={classes.paper}>
           <Form
             onSubmit={async (credentials: any) => {
-              console.log("credentials", credentials);
               await fetch("/api/login", {
                 method: "post",
                 body: JSON.stringify(credentials),

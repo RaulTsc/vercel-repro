@@ -97,7 +97,6 @@ function Page(props: PageProps) {
       <AddBookingFormDialog
         loading={false}
         onSubmit={async (booking: ICreateBooking | null) => {
-          console.log("booking", booking);
           // await props.createBooking(
           //   mapBookingForApi(booking as ICreateBooking)
           // );

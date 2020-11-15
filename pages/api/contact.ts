@@ -66,10 +66,5 @@ export default async (req, res) => {
     text: JSON.stringify(body, null, 2),
   });
 
-  console.log(
-    "Sent email to tomescu.raul@gmail.com",
-    req.session.isAuthenticated
-  );
-
   res.json({});
 };

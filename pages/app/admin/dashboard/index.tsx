@@ -32,6 +32,7 @@ import {
   CURRENCY,
   LANGUAGE,
 } from "../../../../app/interfaces";
+import SideMenu from "../../../../app/components/common/SideMenu/SideMenu";
 // import {
 //   getBookingsCheckinToday,
 //   getBookingsCheckoutToday,
@@ -167,117 +168,120 @@ export function _Dashboard(props: IDashboardProps) {
   return (
     <div>
       <Nav />
-      <Page
-        title={
-          <div style={{ display: "flex" }}>
-            <Typography variant="h6" className={classes.title}>
-              <FormattedMessage
-                id="App.dashboard.title"
-                values={{ firstName: props.user?.firstName }}
+      <div style={{ display: "flex" }}>
+        <SideMenu />
+        <Page
+          title={
+            <div style={{ display: "flex" }}>
+              <Typography variant="h6" className={classes.title}>
+                <FormattedMessage
+                  id="App.dashboard.title"
+                  values={{ firstName: props.user?.firstName }}
+                />
+              </Typography>
+              <FormattedDateLabel
+                date={new Date().toISOString()}
+                className={classes.dateLabel}
               />
-            </Typography>
-            <FormattedDateLabel
-              date={new Date().toISOString()}
-              className={classes.dateLabel}
-            />
-          </div>
-        }
-        actions={[
-          <Tooltip
-            title={<FormattedMessage id="App.common.refresh" />}
-            aria-label="refresh"
-            key={0}
-          >
-            <IconButton
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              color="inherit"
+            </div>
+          }
+          actions={[
+            <Tooltip
+              title={<FormattedMessage id="App.common.refresh" />}
+              aria-label="refresh"
+              key={0}
             >
-              <CachedIcon />
-            </IconButton>
-          </Tooltip>,
-        ]}
-      >
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Grid container spacing={3}>
-              <Grid item md={4} xs={12}>
-                <DashboardCard
-                  raiseOnHover={props.bookingRequests.length > 0}
-                  title={
-                    <FormattedMessage id="App.dashboard.newBookings.title" />
-                  }
-                  label={props.bookingRequests.length}
-                  onClick={() => {
-                    if (props.bookingRequests.length === 0) {
-                      return;
+              <IconButton
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color="inherit"
+              >
+                <CachedIcon />
+              </IconButton>
+            </Tooltip>,
+          ]}
+        >
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <Grid container spacing={3}>
+                <Grid item md={4} xs={12}>
+                  <DashboardCard
+                    raiseOnHover={props.bookingRequests.length > 0}
+                    title={
+                      <FormattedMessage id="App.dashboard.newBookings.title" />
                     }
+                    label={props.bookingRequests.length}
+                    onClick={() => {
+                      if (props.bookingRequests.length === 0) {
+                        return;
+                      }
 
-                    router.push(bookingsList());
-                  }}
-                />
-              </Grid>
-              <Grid item md={4} xs={12}>
-                <DashboardCard
-                  title={
-                    <FormattedMessage id="App.dashboard.totalEarnings.title" />
-                  }
-                  label={
-                    <FormattedCurrencyLabel
-                      language={props.user?.language as LANGUAGE}
-                      amount={totalEarnings}
-                      currency={props.company?.currency as CURRENCY}
-                    />
-                  }
-                />
-              </Grid>
-              <Grid item md={4} xs={12}>
-                <DashboardCard
-                  title={
-                    <FormattedMessage id="App.dashboard.occupancy.title" />
-                  }
-                  label={`${occupancy}%`}
-                />
+                      router.push(bookingsList());
+                    }}
+                  />
+                </Grid>
+                <Grid item md={4} xs={12}>
+                  <DashboardCard
+                    title={
+                      <FormattedMessage id="App.dashboard.totalEarnings.title" />
+                    }
+                    label={
+                      <FormattedCurrencyLabel
+                        language={props.user?.language as LANGUAGE}
+                        amount={totalEarnings}
+                        currency={props.company?.currency as CURRENCY}
+                      />
+                    }
+                  />
+                </Grid>
+                <Grid item md={4} xs={12}>
+                  <DashboardCard
+                    title={
+                      <FormattedMessage id="App.dashboard.occupancy.title" />
+                    }
+                    label={`${occupancy}%`}
+                  />
+                </Grid>
               </Grid>
             </Grid>
-          </Grid>
-          {props.bookingsCheckoutToday.length > 0 && (
-            <Grid item xs={12}>
-              <DashboardBookings
-                title={
-                  <Typography variant="h6">
-                    <FormattedMessage id="App.dashboard.checkout.title" />
-                  </Typography>
-                }
-                bookings={props.bookingsCheckoutToday}
-                company={props.company}
-                user={props.user}
-              />
-            </Grid>
-          )}
-          {props.bookingsCheckinToday.length > 0 && (
-            <Grid item xs={12}>
-              <DashboardBookings
-                title={
-                  <Typography variant="h6">
-                    <FormattedMessage id="App.dashboard.checkin.title" />
-                  </Typography>
-                }
-                bookings={props.bookingsCheckinToday}
-                company={props.company}
-                user={props.user}
-              />
-            </Grid>
-          )}
-          {props.bookingsCheckoutToday.length === 0 &&
-            props.bookingsCheckinToday.length === 0 && (
+            {props.bookingsCheckoutToday.length > 0 && (
               <Grid item xs={12}>
-                <NoBookingsEmptyPlaceholder style={{ marginTop: "40px" }} />
+                <DashboardBookings
+                  title={
+                    <Typography variant="h6">
+                      <FormattedMessage id="App.dashboard.checkout.title" />
+                    </Typography>
+                  }
+                  bookings={props.bookingsCheckoutToday}
+                  company={props.company}
+                  user={props.user}
+                />
               </Grid>
             )}
-        </Grid>
-      </Page>
+            {props.bookingsCheckinToday.length > 0 && (
+              <Grid item xs={12}>
+                <DashboardBookings
+                  title={
+                    <Typography variant="h6">
+                      <FormattedMessage id="App.dashboard.checkin.title" />
+                    </Typography>
+                  }
+                  bookings={props.bookingsCheckinToday}
+                  company={props.company}
+                  user={props.user}
+                />
+              </Grid>
+            )}
+            {props.bookingsCheckoutToday.length === 0 &&
+              props.bookingsCheckinToday.length === 0 && (
+                <Grid item xs={12}>
+                  <NoBookingsEmptyPlaceholder style={{ marginTop: "40px" }} />
+                </Grid>
+              )}
+          </Grid>
+        </Page>
+      </div>
     </div>
   );
 }

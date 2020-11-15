@@ -50,7 +50,6 @@ export const applyValidatorIf = (condition: any) => (rule: any) => (
 ) => condition(value, allValues) && rule(value, allValues);
 
 export function email(value: any) {
-  console.log("value email", value);
   if (!isEmpty(value) && !isValidEmail(value)) {
     return <FormattedMessage id="validation.email.invalid" />;
   }

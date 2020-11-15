@@ -12,7 +12,11 @@ import IntlProvider from "../website/components/IntlProvider";
 import getLocale from "../utils/getLocale";
 import getMessages from "../utils/getMessages";
 
+import "@fullcalendar/common/main.css"; // @fullcalendar/react imports @fullcalendar/common
+import "@fullcalendar/daygrid/main.css"; // @fullcalendar/timegrid imports @fullcalendar/daygrid
+import "@fullcalendar/timegrid/main.css";
 import "../styles/globals.css";
+import "../styles/materialDesignCalendar.css";
 
 import store from "../app/store";
 

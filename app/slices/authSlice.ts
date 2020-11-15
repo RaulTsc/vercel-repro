@@ -29,7 +29,6 @@ export const login = (credentials: ILoginCredentials): AppThunk => async (
     });
     const data = await response.json();
     window.location.replace(dashboard());
-    console.log("got data", data);
   } catch (err) {
     dispatch(authSlice.actions.loginFailure());
   }
