@@ -6,13 +6,13 @@ export const bookingsList = (
   sortFilterPaging: ISortFilterPaging<{ fullSearch: string }> = {}
 ) =>
   applyQueryFilters(
-    "/admin/bookings",
+    "/app/admin/bookings",
     sortFilterPaging.filter,
     sortFilterPaging.sort,
     sortFilterPaging.paging
   );
 export const bookingDetails = (bookingId: string) =>
-  `/admin/bookings/${bookingId}`;
+  `/app/admin/bookings/${bookingId}`;
 
 export const roomsList = (
   sortFilterPaging: ISortFilterPaging<{ fullSearch: string }> = {}
@@ -23,7 +23,7 @@ export const roomsList = (
     sortFilterPaging.sort,
     sortFilterPaging.paging
   );
-export const roomDetails = (roomId: string) => `/admin/rooms/${roomId}`;
+export const roomDetails = (roomId: string) => `/app/admin/rooms/${roomId}`;
 
 export const roomTypesList = (
   sortFilterPaging: ISortFilterPaging<{ fullSearch: string }> = {}
@@ -35,7 +35,7 @@ export const roomTypesList = (
     sortFilterPaging.paging
   );
 export const roomTypeDetails = (roomTypeId: string) =>
-  `/admin/room-types/${roomTypeId}`;
+  `/app/admin/room-types/${roomTypeId}`;
 
 export const customersList = (
   sortFilterPaging: ISortFilterPaging<{ fullSearch: string }> = {}
@@ -47,10 +47,11 @@ export const customersList = (
     sortFilterPaging.paging
   );
 export const customerDetails = (customerId: string) =>
-  `/admin/customers/${customerId}`;
+  `/app/admin/customers/${customerId}`;
 
 export const reviewsList = () => "/admin/reviews";
-export const reviewDetails = (reviewId: string) => `/admin/reviews/${reviewId}`;
+export const reviewDetails = (reviewId: string) =>
+  `/app/admin/reviews/${reviewId}`;
 
 export const emailTemplatesList = (
   sortFilterPaging: ISortFilterPaging<{ fullSearch: string }> = {}
@@ -69,7 +70,7 @@ export const emailTemplateDetails = ({
   type,
   language,
 }: IEmailTemplateDetailsParam) =>
-  `/admin/email-templates/${type}?language=${language}`;
+  `/app/admin/email-templates/${type}?language=${language}`;
 
 export const finalizeBookingPage = ({
   checkinDate,
