@@ -19,6 +19,7 @@ import "../styles/globals.css";
 import "../styles/materialDesignCalendar.css";
 
 import store from "../app/store";
+import { CssBaseline } from "@material-ui/core";
 
 if (typeof window === "undefined") {
   // dom parser for FormatedHTMLMessages
@@ -105,8 +106,17 @@ export const theme = createMuiTheme({
 function MyApp(props: any) {
   const { Component, pageProps, locale, messages } = props;
 
+  React.useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector("#jss-server-side");
+    if (jssStyles) {
+      jssStyles.parentElement.removeChild(jssStyles);
+    }
+  }, []);
+
   return (
     <MuiThemeProvider theme={theme}>
+      <CssBaseline />
       <IntlProvider locale={locale || "en"} messages={messages}>
         <Provider store={store}>
           <MuiPickersUtilsProvider utils={MomentUtils}>
