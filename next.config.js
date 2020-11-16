@@ -19,19 +19,19 @@ module.exports = withTM({
     },
     microservices: {
       prismApi: {
-        baseUrl: "http://dev.everreal.co:2050/api/prism",
+        baseUrl: "http://dev.usevisitor.com:2050/api/prism",
       },
       myApp: {
-        baseUrl: "http://dev.everreal.co:2000",
+        baseUrl: "http://dev.usevisitor.com:2000",
       },
       heimdall: {
-        baseUrl: "http://dev.everreal.co:9200/accounts",
+        baseUrl: "http://dev.usevisitor.com:9200/accounts",
       },
       templatesApi: {
-        baseUrl: "http://dev.everreal.co:10100/api/templates",
+        baseUrl: "http://dev.usevisitor.com:10100/api/templates",
       },
       partnerApi: {
-        baseUrl: "http://dev.everreal.co:9700/api/partner",
+        baseUrl: "http://dev.usevisitor.com:9700/api/partner",
       },
     },
   },

@@ -1,5 +1,5 @@
 import * as uuid from "uuid";
-import * as cookieHelper from "cookie";
+import cookieCutter from "cookie-cutter";
 import * as cookieService from "@raultom/common-helpers/lib/services/cookieService/cookieService";
 import getConfig from "next/config";
 import {
@@ -10,15 +10,6 @@ import {
   ACCESS_TOKEN_COOKIE_SAME_SITE,
 } from "./constants";
 import { LANGUAGE } from "../interfaces";
-
-const getCookie = (name: string): string | null => {
-  if (window) {
-    const cookies = cookieHelper.parse(window.document.cookie);
-    return cookies[name] || null;
-  }
-
-  return null;
-};
 
 const deleteCookie = () => {
   cookieService.deleteCookie({
@@ -54,8 +45,8 @@ const doFetch = async <T extends any>(
     throw new Error("Cannot do fetch because the url or method are empty");
   }
 
-  const accessToken = getCookie(ACCESS_TOKEN_COOKIE_NAME);
-  const language = getCookie("accept-language");
+  const accessToken = cookieCutter.get(ACCESS_TOKEN_COOKIE_NAME);
+  const language = cookieCutter.get("accept-language");
 
   const options: RequestInit = {
     method: method.toUpperCase(),
@@ -79,7 +70,7 @@ const doFetch = async <T extends any>(
   if (isForbidden(response.status)) {
     deleteCookie();
     await refreshToken();
-    const accessToken = getCookie(ACCESS_TOKEN_COOKIE_NAME);
+    const accessToken = cookieCutter.get(ACCESS_TOKEN_COOKIE_NAME);
     response = await fetch(url, {
       ...options,
       headers: { ...options.headers, Authorization: `Bearer ${accessToken}` },

@@ -84,3 +84,4 @@ export * from "./roomTypes";
 export * from "./settings";
 export * from "./customers";
 export * from "./emailTypes";
+export * from "./reviews";
