@@ -9,10 +9,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#d7f0fa",
     backgroundImage:
       "linear-gradient(0deg, rgb(215, 240, 250) -20%, rgb(255, 255, 255) 85%, rgb(255, 255, 255) 100%)",
-    marginBottom: "-4px",
+    marginBottom: "-8px",
   },
   containerInner: {
-    maxWidth: "1080px",
+    maxWidth: "1400px",
     margin: "0 auto",
     padding: "80px 0px",
     textAlign: "center",

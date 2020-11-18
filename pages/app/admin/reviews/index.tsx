@@ -19,6 +19,8 @@ import {
   selectors as reviewsSelectors,
   getReviews,
 } from "../../../../app/slices/adminSlice/reviewsSlice";
+import Nav from "../../../../app/components/common/Nav/Nav";
+import SideMenu from "../../../../app/components/common/SideMenu/SideMenu";
 
 const useStyles = makeStyles((theme) => ({
   table: {},
@@ -38,53 +40,59 @@ export const _AdminReviewPage = (props: IAdminReviewPageProps) => {
   }, []);
 
   return (
-    <Page titleLocale="App.reviews.reviewsTitle">
-      {props.reviews.length > 0 && (
-        <Paper elevation={0}>
-          <ResponsiveTable
-            listItems={props.reviews}
-            tableHeaderCells={[
-              <TableCell key={0}>
-                <FormattedMessage id="App.common.name" />
-              </TableCell>,
-              <TableCell key={1}>
-                <FormattedMessage id="App.reviews.common.rating" />
-              </TableCell>,
-              <TableCell key={2}>
-                <FormattedMessage id="App.reviews.common.comment" />
-              </TableCell>,
-            ]}
-            renderDesktopRow={(row: IReview) => (
-              <TableRow
-                hover
-                key={row.id}
-                className={classes.tableRow}
-                onClick={() => router.push(reviewDetails(row.id as string))}
-              >
-                <TableCell component="th" scope="row">
-                  {getFullName(row.customer)}
-                </TableCell>
-                <TableCell>{row.rating}</TableCell>
-                <TableCell>{row.text}</TableCell>
-              </TableRow>
-            )}
-            renderMobileRow={(row: IReview) => (
-              <ListItem
-                button
-                key={row.id}
-                alignItems="flex-start"
-                onClick={() => router.push(reviewDetails(row.id as string))}
-              >
-                <ListItemText
-                  primary={getFullName(row.customer)}
-                  secondary={row.text}
-                />
-              </ListItem>
-            )}
-          />
-        </Paper>
-      )}
-    </Page>
+    <div>
+      <Nav />
+      <div style={{ display: "flex" }}>
+        <SideMenu />
+        <Page titleLocale="App.reviews.reviewsTitle">
+          {props.reviews.length > 0 && (
+            <Paper elevation={0}>
+              <ResponsiveTable
+                listItems={props.reviews}
+                tableHeaderCells={[
+                  <TableCell key={0}>
+                    <FormattedMessage id="App.common.name" />
+                  </TableCell>,
+                  <TableCell key={1}>
+                    <FormattedMessage id="App.reviews.common.rating" />
+                  </TableCell>,
+                  <TableCell key={2}>
+                    <FormattedMessage id="App.reviews.common.comment" />
+                  </TableCell>,
+                ]}
+                renderDesktopRow={(row: IReview) => (
+                  <TableRow
+                    hover
+                    key={row.id}
+                    className={classes.tableRow}
+                    onClick={() => router.push(reviewDetails(row.id as string))}
+                  >
+                    <TableCell component="th" scope="row">
+                      {getFullName(row.customer)}
+                    </TableCell>
+                    <TableCell>{row.rating}</TableCell>
+                    <TableCell>{row.text}</TableCell>
+                  </TableRow>
+                )}
+                renderMobileRow={(row: IReview) => (
+                  <ListItem
+                    button
+                    key={row.id}
+                    alignItems="flex-start"
+                    onClick={() => router.push(reviewDetails(row.id as string))}
+                  >
+                    <ListItemText
+                      primary={getFullName(row.customer)}
+                      secondary={row.text}
+                    />
+                  </ListItem>
+                )}
+              />
+            </Paper>
+          )}
+        </Page>
+      </div>
+    </div>
   );
 };
 

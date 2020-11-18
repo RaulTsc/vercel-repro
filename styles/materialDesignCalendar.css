@@ -192,7 +192,7 @@ th.fc-timeline-slot {
 }
 
 .resource-timeline-week-weekdaynumber-label {
-  font-size: 24px;
+  font-size: 20px;
   margin-top: 6px;
   color: #3c4043;
 }
@@ -204,7 +204,7 @@ th.fc-timeline-slot {
 }
 
 .resource-timeline-month-weekdaynumber-label {
-  font-size: 18px;
+  font-size: 16px;
   margin-top: 6px;
   color: #3c4043;
 }

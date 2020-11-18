@@ -68,7 +68,9 @@ function FormDialogInternal<T>(
         aria-labelledby="form-dialog-title"
       >
         {showTitle && (
-          <DialogTitle id="form-dialog-title">{props.title}</DialogTitle>
+          <DialogTitle id="form-dialog-title" style={{ fontWeight: 600 }}>
+            {props.title}
+          </DialogTitle>
         )}
         <DialogContent>
           <Form

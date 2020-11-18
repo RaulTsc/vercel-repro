@@ -15,3 +15,13 @@ export const getLocaleFromLanguage = (
     return "ro";
   }
 };
+
+export const getLanguageByPathname = (pathname: string): LANGUAGE | null => {
+  console.log("pathname", pathname);
+
+  if (pathname.includes("/ro")) {
+    return LANGUAGE.RO_RO;
+  }
+
+  return LANGUAGE.EN_US;
+};

@@ -1,9 +1,11 @@
-const getMessages = async (locale: string) => {
+import { LANGUAGE } from "../app/interfaces";
+
+const getMessages = async (language: LANGUAGE) => {
   try {
-    return require(`../lang/${locale}.json`);
+    return require(`../lang/${language}.json`);
   } catch (error) {
     console.error(error);
-    return require(`../lang/en.json`);
+    return require(`../lang/en-US.json`);
   }
 };
 

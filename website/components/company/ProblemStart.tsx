@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
   },
   inner: {
-    maxWidth: "1080px",
+    maxWidth: "1400px",
     margin: "0 auto",
     padding: "160px 0px 80px 0px",
     textAlign: "center",

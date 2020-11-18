@@ -1,16 +1,6 @@
 import React from "react";
-import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import yellow from "@material-ui/core/colors/yellow";
-import CheckIcon from "@material-ui/icons/Check";
-import grey from "@material-ui/core/colors/grey";
-import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
-import TimerIcon from "@material-ui/icons/Timer";
-import WebIcon from "@material-ui/icons/Web";
-import Link from "next/link";
 import { Footer } from "../website/components/Footer";
 import { Nav } from "../website/components/Nav";
 import { ChannelManager } from "../website/components/home/ChannelManager";
@@ -19,7 +9,7 @@ import { OwnBookingWebsite } from "../website/components/home/OwnBookingWebsite"
 import { DirectBookingTechnology } from "../website/components/home/DirectBookingTechnology";
 import { Header } from "../website/components/home/Header";
 import Head from "next/head";
-import { FormattedMessage, useIntl } from "react-intl";
+import { useIntl } from "react-intl";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -151,10 +141,11 @@ const Home = () => {
   const intl = useIntl();
 
   return (
-    <div>
+    <div style={{ backgroundColor: "white" }}>
       <Head>
-        <title>{intl.formatMessage({ id: "App.common.pageTitle" })}</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <title key="title">
+          {intl.formatMessage({ id: "App.common.pageTitle" })}
+        </title>
       </Head>
       <Nav />
       <Header />

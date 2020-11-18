@@ -2,14 +2,27 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import { FormattedMessage } from "react-intl";
 import Link from "next/link";
+import { Button } from "./common/Button";
+import {
+  getStartedUrl,
+  privacyUrl,
+  legalUrl,
+  loginUrl,
+  securityUrl,
+  productUrl,
+  pricingUrl,
+  companyUrl,
+} from "../../app/helpers/navigation";
+import { LANGUAGE } from "../../app/interfaces";
+import { useRouter } from "next/router";
+import * as languageService from "../../app/services/languageService";
 
 const footerLegalBackgroundColor = "#eef2f4";
 const useStyles = makeStyles((theme) => ({
   container: {
-    maxWidth: "1080px",
+    maxWidth: "1400px",
     margin: "0 auto",
     padding: "30px",
     width: "100%",
@@ -19,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "20px 0px",
   },
   legal: {
-    maxWidth: "1080px",
+    maxWidth: "1400px",
     display: "flex",
     margin: "0 auto",
     justifyContent: "center",
@@ -66,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     minHeight: "410px",
     position: "relative",
-    maxWidth: "1080px",
+    maxWidth: "1400px",
     margin: "0 auto",
   },
   footerContainer: {
@@ -99,7 +112,7 @@ const useStyles = makeStyles((theme) => ({
   inner: {
     padding: "60px",
     [theme.breakpoints.down("xs")]: {
-      padding: "40px",
+      padding: "40px 20px",
     },
   },
   title: {
@@ -148,6 +161,10 @@ export interface IFooterProps {
 }
 export const Footer = (props: IFooterProps) => {
   const classes = useStyles();
+  const router = useRouter();
+  const language: LANGUAGE = languageService.getLanguageByPathname(
+    router.pathname
+  );
 
   return (
     <div>
@@ -177,7 +194,7 @@ export const Footer = (props: IFooterProps) => {
                     <FormattedMessage id={props.subtitleLocale} />
                   </Typography>
                 )}
-                <Link href="/get-started">
+                <Link href={getStartedUrl(language)}>
                   <Button
                     color="primary"
                     className={classes.button}
@@ -205,7 +222,7 @@ export const Footer = (props: IFooterProps) => {
           </Typography>
           <ul style={{ listStyleType: "none", padding: "0px" }}>
             <li>
-              <Link href="/product">
+              <Link href={productUrl(language)}>
                 <Typography variant="body1" className={classes.link}>
                   <a>
                     <FormattedMessage id="App.footer.features" />
@@ -214,7 +231,7 @@ export const Footer = (props: IFooterProps) => {
               </Link>
             </li>
             <li>
-              <Link href="/pricing">
+              <Link href={pricingUrl(language)}>
                 <Typography variant="body1" className={classes.link}>
                   <a>
                     <FormattedMessage id="App.footer.pricing" />
@@ -230,7 +247,7 @@ export const Footer = (props: IFooterProps) => {
           </Typography>
           <ul style={{ listStyleType: "none", padding: "0px" }}>
             <li>
-              <Link href="/get-started">
+              <Link href={getStartedUrl(language)}>
                 <Typography variant="body1" className={classes.link}>
                   <a>
                     <FormattedMessage id="App.footer.helpCenter" />
@@ -246,7 +263,7 @@ export const Footer = (props: IFooterProps) => {
           </Typography>
           <ul style={{ listStyleType: "none", padding: "0px" }}>
             <li>
-              <Link href="/company">
+              <Link href={companyUrl(language)}>
                 <Typography variant="body1" className={classes.link}>
                   <a>
                     <FormattedMessage id="App.footer.company" />
@@ -262,7 +279,7 @@ export const Footer = (props: IFooterProps) => {
           </Typography>
           <ul style={{ listStyleType: "none", padding: "0px" }}>
             <li>
-              <Link href="/get-started">
+              <Link href={getStartedUrl(language)}>
                 <Typography variant="body1" className={classes.link}>
                   <a>
                     <FormattedMessage id="App.footer.contact" />
@@ -271,7 +288,7 @@ export const Footer = (props: IFooterProps) => {
               </Link>
             </li>
             <li>
-              <Link href="/get-started">
+              <Link href={getStartedUrl(language)}>
                 <Typography variant="body1" className={classes.link}>
                   <a>
                     <FormattedMessage id="App.footer.support" />
@@ -284,7 +301,7 @@ export const Footer = (props: IFooterProps) => {
       </Grid>
       <div className={classes.legalContainer}>
         <div className={classes.legal}>
-          <Link href="/legal">
+          <Link href={legalUrl(language)}>
             <Typography
               variant="body1"
               className={classes.link}
@@ -295,7 +312,7 @@ export const Footer = (props: IFooterProps) => {
               </a>
             </Typography>
           </Link>
-          <Link href="/privacy">
+          <Link href={privacyUrl(language)}>
             <Typography
               variant="body1"
               className={classes.link}
@@ -306,7 +323,7 @@ export const Footer = (props: IFooterProps) => {
               </a>
             </Typography>
           </Link>
-          <Link href="/security">
+          <Link href={securityUrl(language)}>
             <Typography
               variant="body1"
               className={classes.link}
@@ -317,7 +334,7 @@ export const Footer = (props: IFooterProps) => {
               </a>
             </Typography>
           </Link>
-          <Link href="/log-in">
+          <Link href={loginUrl(language)}>
             <Typography
               variant="body1"
               className={classes.link}

@@ -4,9 +4,6 @@ import { makeStyles, createStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { useRouter } from "next/router";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
-import AddBookingFormDialog, {
-  ICreateBooking,
-} from "../AddBookingFormDialog/AddBookingFormDialog";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -51,7 +48,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export interface PageProps {
+export type PageProps = {
   hideTitleOnXs?: boolean;
   title?: React.ReactNode;
   breadcrumbs?: React.ReactNode;
@@ -59,7 +56,7 @@ export interface PageProps {
   backTitleLocale?: string;
   actions?: Array<React.ReactNode>;
   children?: React.ReactNode;
-}
+};
 function Page(props: PageProps) {
   const classes = useStyles(props);
   const router = useRouter();
@@ -78,7 +75,7 @@ function Page(props: PageProps) {
             {props.breadcrumbs}
             <div>
               {!props.title && props.titleLocale && (
-                <Typography variant="h6">
+                <Typography variant="h6" style={{ fontWeight: 600 }}>
                   {<FormattedMessage id={props.titleLocale} />}
                 </Typography>
               )}
@@ -93,20 +90,6 @@ function Page(props: PageProps) {
       <hr className={classes.hr} />
 
       {props.children}
-
-      <AddBookingFormDialog
-        loading={false}
-        onSubmit={async (booking: ICreateBooking | null) => {
-          // await props.createBooking(
-          //   mapBookingForApi(booking as ICreateBooking)
-          // );
-          // props.toggleDialogByName({
-          //   name: ADD_BOOKING_FORM_DIALOG,
-          //   isOpen: false,
-          // });
-          // await props.getBookings();
-        }}
-      />
     </div>
   );
 }

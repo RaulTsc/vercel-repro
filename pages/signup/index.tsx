@@ -56,8 +56,9 @@ export default function SignupPage(props: ISignupPageProps) {
   return (
     <PageContainer>
       <Head>
-        <title>{intl.formatMessage({ id: "App.signup.title" })}</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <title key="title">
+          {intl.formatMessage({ id: "App.signup.title" })}
+        </title>
       </Head>
       <Nav hideMobileMenu hideRightButtons />
       <div style={{ paddingTop: "160px" }}>

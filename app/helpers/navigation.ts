@@ -18,7 +18,7 @@ export const roomsList = (
   sortFilterPaging: ISortFilterPaging<{ fullSearch: string }> = {}
 ) =>
   applyQueryFilters(
-    "/admin/rooms",
+    "/app/admin/rooms",
     sortFilterPaging.filter,
     sortFilterPaging.sort,
     sortFilterPaging.paging
@@ -29,7 +29,7 @@ export const roomTypesList = (
   sortFilterPaging: ISortFilterPaging<{ fullSearch: string }> = {}
 ) =>
   applyQueryFilters(
-    "/admin/room-types",
+    "/app/admin/room-types",
     sortFilterPaging.filter,
     sortFilterPaging.sort,
     sortFilterPaging.paging
@@ -41,7 +41,7 @@ export const customersList = (
   sortFilterPaging: ISortFilterPaging<{ fullSearch: string }> = {}
 ) =>
   applyQueryFilters(
-    "/admin/customers",
+    "/app/admin/customers",
     sortFilterPaging.filter,
     sortFilterPaging.sort,
     sortFilterPaging.paging
@@ -49,7 +49,7 @@ export const customersList = (
 export const customerDetails = (customerId: string) =>
   `/app/admin/customers/${customerId}`;
 
-export const reviewsList = () => "/admin/reviews";
+export const reviewsList = () => "/app/admin/reviews";
 export const reviewDetails = (reviewId: string) =>
   `/app/admin/reviews/${reviewId}`;
 
@@ -57,7 +57,7 @@ export const emailTemplatesList = (
   sortFilterPaging: ISortFilterPaging<{ fullSearch: string }> = {}
 ) =>
   applyQueryFilters(
-    "/admin/email-templates",
+    "/app/admin/email-templates",
     sortFilterPaging.filter,
     sortFilterPaging.sort,
     sortFilterPaging.paging
@@ -93,6 +93,48 @@ export const dashboard = () => "/app/admin/dashboard";
 
 export const signup = () => "/signup";
 
-export const login = () => "/login";
-
 export const resetPassword = () => "/reset-password";
+
+export const withLanguage = (language: LANGUAGE, url: string) => {
+  if (language === LANGUAGE.RO_RO) {
+    return `/ro${url}`;
+  }
+
+  return url;
+};
+
+export const productUrl = (language: LANGUAGE) => {
+  return withLanguage(language, "/product");
+};
+
+export const pricingUrl = (language: LANGUAGE) => {
+  return withLanguage(language, "/pricing");
+};
+
+export const companyUrl = (language: LANGUAGE) => {
+  return withLanguage(language, "/company");
+};
+
+export const websiteHomeUrl = (language: LANGUAGE) => {
+  return withLanguage(language, "/");
+};
+
+export const getStartedUrl = (language: LANGUAGE) => {
+  return withLanguage(language, "/get-started");
+};
+
+export const legalUrl = (language: LANGUAGE) => {
+  return withLanguage(language, "/legal");
+};
+
+export const privacyUrl = (language: LANGUAGE) => {
+  return withLanguage(language, "/privacy");
+};
+
+export const securityUrl = (language: LANGUAGE) => {
+  return withLanguage(language, "/security");
+};
+
+export const loginUrl = (language: LANGUAGE) => {
+  return withLanguage(language, "/login");
+};

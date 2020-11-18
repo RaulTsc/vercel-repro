@@ -2,7 +2,6 @@ import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import yellow from "@material-ui/core/colors/yellow";
 import CheckIcon from "@material-ui/icons/Check";
@@ -11,16 +10,21 @@ import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import TimerIcon from "@material-ui/icons/Timer";
 import WebIcon from "@material-ui/icons/Web";
 import Link from "next/link";
+import { Button } from "../common/Button";
+import { getStartedUrl, productUrl } from "../../../app/helpers/navigation";
+import { useRouter } from "next/router";
+import * as languageService from "../../../app/services/languageService";
+import { LANGUAGE } from "../../../app/interfaces";
 
 const useStyles = makeStyles((theme) => ({
   headerContainer: {
     backgroundColor: "#d7f0fa",
     backgroundImage:
       "linear-gradient(0deg, rgb(215, 240, 250) -20%, rgb(255, 255, 255) 85%, rgb(255, 255, 255) 100%)",
-    marginBottom: "-4px",
+    marginBottom: "-8px",
   },
   header: {
-    maxWidth: "1080px",
+    maxWidth: "1400px",
     margin: "0px auto",
     padding: "120px 0px 80px 0px",
     [theme.breakpoints.down("sm")]: {
@@ -36,17 +40,27 @@ const useStyles = makeStyles((theme) => ({
   },
   headerDescription: {
     color: theme.palette.grey.A100,
-    padding: "0px 10px 30px 10px",
-    textAlign: "center",
+    padding: "20px 0px 30px 0px",
+    [theme.breakpoints.down("sm")]: {
+      padding: "10px 0px 20px 0px",
+    },
+    [theme.breakpoints.down("xs")]: {
+      padding: "0px 10px 30px 10px",
+      textAlign: "center",
+    },
   },
   headerColumns: {
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       flexDirection: "column-reverse",
     },
   },
   title: {
     fontWeight: 600,
     color: theme.palette.grey.A100,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "30px",
+      lineHeight: "40px",
+    },
     [theme.breakpoints.down("xs")]: {
       fontSize: "28px",
       lineHeight: "40px",
@@ -143,12 +157,16 @@ const Waves = () => {
 
 export const Header = () => {
   const classes = useStyles();
+  const router = useRouter();
+  const language: LANGUAGE = languageService.getLanguageByPathname(
+    router.pathname
+  );
 
   return (
     <div className={classes.headerContainer}>
       <div className={classes.header}>
         <Grid container spacing={2} className={classes.headerColumns}>
-          <Grid item sm={6} xs={12}>
+          <Grid item md={6} sm={12}>
             <Typography
               variant="h1"
               className={clsx(classes.title, classes.paddingRightSmUp)}
@@ -162,7 +180,7 @@ export const Header = () => {
               <FormattedMessage id="App.home.header.description" />
             </Typography>
             <div>
-              <Link href="/get-started">
+              <Link href={getStartedUrl(language)}>
                 <Button
                   variant="contained"
                   color="primary"
@@ -174,7 +192,7 @@ export const Header = () => {
                   <FormattedMessage id="App.common.getStarted" />
                 </Button>
               </Link>
-              <Link href="/product">
+              <Link href={productUrl(language)}>
                 <Button
                   variant="outlined"
                   color="primary"
@@ -185,7 +203,7 @@ export const Header = () => {
               </Link>
             </div>
           </Grid>
-          <Grid item sm={6} xs={12} className={classes.headerImage}>
+          <Grid item md={6} sm={12} className={classes.headerImage}>
             <img
               alt="header"
               width="100%"

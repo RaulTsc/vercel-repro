@@ -110,7 +110,7 @@ export const getReviews = (): AppThunk<Promise<void>> => async (
 ): Promise<void> => {
   try {
     dispatch(reviewsSlice.actions.getReviewsStart());
-    const response = await prismApi.get("/public/me/reviews");
+    const response = await prismApi.get("/companies/me/reviews");
     const reviews: IReview[] = await response.json();
     dispatch(reviewsSlice.actions.getReviewsSuccess(reviews));
   } catch (err) {

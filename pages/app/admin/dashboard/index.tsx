@@ -17,12 +17,15 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Grid from "@material-ui/core/Grid";
 import { bookingsList } from "../../../../app/helpers/navigation";
 import { useRouter } from "next/router";
-// import { getRooms, selectors as roomsSelectors } from "./../rooms/roomsSlice";
-// import { selectors as commonSelectors } from "./../../common/commonSlice";
-// import {
-//   getBookings,
-//   selectors as bookingsSelectors,
-// } from "./../bookings/bookingsSlice";
+import {
+  getRooms,
+  selectors as roomsSelectors,
+} from "../../../../app/slices/adminSlice/roomsSlice";
+import { selectors as commonSelectors } from "../../../../app/slices/commonSlice";
+import {
+  getBookings,
+  selectors as bookingsSelectors,
+} from "../../../../app/slices/adminSlice/bookingsSlice";
 import { RootState } from "../../../../app/store";
 import * as bookingsService from "../../../../app/services/bookingsService";
 import { FormattedCurrencyLabel } from "../../../../app/components/common/FormattedCurrencyLabel/FormattedCurrencyLabel";
@@ -33,12 +36,12 @@ import {
   LANGUAGE,
 } from "../../../../app/interfaces";
 import SideMenu from "../../../../app/components/common/SideMenu/SideMenu";
-// import {
-//   getBookingsCheckinToday,
-//   getBookingsCheckoutToday,
-//   getBookingRequests,
-//   selectors as dashboardSelectors,
-// } from "./dashboardSlice";
+import {
+  getBookingsCheckinToday,
+  getBookingsCheckoutToday,
+  getBookingRequests,
+  selectors as dashboardSelectors,
+} from "../../../../app/slices/adminSlice/dashboardSlice";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -46,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-end",
     marginRight: "8px",
     display: "none",
+    fontWeight: 600,
 
     [theme.breakpoints.up("sm")]: {
       display: "flex",
@@ -55,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-end",
-    paddingBottom: "6px",
+    paddingBottom: "4px",
     fontSize: "14px",
     color: "rgba(0,0,0,0.87)",
   },
@@ -145,19 +149,19 @@ export function _Dashboard(props: IDashboardProps) {
       second: 0,
     })
     .toISOString();
-  // React.useEffect(() => {
-  //   props.getRooms({
-  //     filter: {
-  //       availableFrom: startDate,
-  //       availableTo: endDate,
-  //     },
-  //   });
-  //   props.getBookings({ filter: { startDate, endDate } });
-  //   props.getBookingRequests();
-  //   props.getBookingsCheckinToday();
-  //   props.getBookingsCheckoutToday();
-  //   // eslint-disable-next-line
-  // }, []);
+  React.useEffect(() => {
+    props.getRooms({
+      filter: {
+        availableFrom: startDate,
+        availableTo: endDate,
+      },
+    });
+    props.getBookings({ filter: { startDate, endDate } });
+    props.getBookingRequests();
+    props.getBookingsCheckinToday();
+    props.getBookingsCheckoutToday();
+    // eslint-disable-next-line
+  }, []);
 
   const occupancy: string = (
     ((props.totalRooms - props.rooms.length) / props.totalRooms) *
@@ -288,21 +292,23 @@ export function _Dashboard(props: IDashboardProps) {
 
 const connector = connect(
   (state: RootState) => ({
-    user: null,
-    company: null,
-    rooms: [],
-    totalRooms: 1,
-    bookings: [],
-    bookingRequests: [],
-    bookingsCheckinToday: [],
-    bookingsCheckoutToday: [],
+    user: commonSelectors.selectUser(state),
+    company: commonSelectors.selectCompany(state),
+    rooms: roomsSelectors.selectRooms(state),
+    totalRooms: roomsSelectors.selectTotalRooms(state),
+    bookings: bookingsSelectors.selectBookings(state),
+    bookingRequests: dashboardSelectors.selectBookingRequests(state),
+    bookingsCheckinToday: dashboardSelectors.selectBookingsCheckinToday(state),
+    bookingsCheckoutToday: dashboardSelectors.selectBookingsCheckoutToday(
+      state
+    ),
   }),
   {
-    // getRooms,
-    // getBookings,
-    // getBookingsCheckinToday,
-    // getBookingsCheckoutToday,
-    // getBookingRequests,
+    getRooms,
+    getBookings,
+    getBookingsCheckinToday,
+    getBookingsCheckoutToday,
+    getBookingRequests,
   }
 );
 const Dashboard = connector(_Dashboard);

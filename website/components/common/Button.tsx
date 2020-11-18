@@ -19,5 +19,9 @@ const useStyles = makeStyles((theme) => ({
 export const Button = (props: MuiButtonProps) => {
   const classes = useStyles();
 
-  return <MuiButton classes={classes} />;
+  return (
+    <MuiButton classes={classes} {...props}>
+      {props.children}
+    </MuiButton>
+  );
 };

@@ -5,7 +5,7 @@ import {
   RawIntlProvider,
   IntlConfig,
 } from "react-intl";
-import cookie from "js-cookie";
+import cookieCutter from "cookie-cutter";
 import getMessages from "../../utils/getMessages";
 
 type localeType = IntlConfig["locale"];
@@ -32,9 +32,9 @@ const IntlProvider: React.FC<Pick<ContextProps, "locale" | "messages">> = ({
 
   const setLocale = async (nextLocale: localeType) => {
     // only triggered by used in this case go and fetch new locale data
-    const nextMessages = await getMessages(nextLocale);
+    const nextMessages = await getMessages(nextLocale as any);
     setIntl(createIntl({ locale: nextLocale, messages: nextMessages }, cache));
-    cookie.set("locale", nextLocale, { expires: 365 });
+    cookieCutter.set("locale", nextLocale, { expires: 365 });
   };
 
   useEffect(() => {

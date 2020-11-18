@@ -6,7 +6,7 @@ import { FormattedMessage } from "react-intl";
 const useStyles = makeStyles((theme) => ({
   container: {},
   containerInner: {
-    maxWidth: "1080px",
+    maxWidth: "1400px",
     margin: "0 auto",
     padding: "160px 0px 0px 0px",
     textAlign: "center",

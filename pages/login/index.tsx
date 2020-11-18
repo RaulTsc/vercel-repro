@@ -60,8 +60,9 @@ function _SigninPage(props: ISignInProps) {
   return (
     <PageContainer>
       <Head>
-        <title>{intl.formatMessage({ id: "App.login.title" })}</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <title key="title">
+          {intl.formatMessage({ id: "App.login.title" })}
+        </title>
       </Head>
       <Nav hideMobileMenu hideRightButtons />
       <div style={{ paddingTop: "160px" }}>

@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   gridContainer: {
-    maxWidth: "1080px",
+    maxWidth: "1400px",
     margin: "0 auto",
     padding: "80px 0px",
   },

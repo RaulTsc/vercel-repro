@@ -58,9 +58,13 @@ export interface IUser extends ITimestamps {
 export enum COUNTRY {
   RO = "RO",
   GB = "GB",
-  US = "US",
   DE = "DE",
   HU = "HU",
+  IT = "IT",
+  ES = "ES",
+  FR = "FR",
+  PT = "PT",
+  NL = "NL",
 }
 
 export interface IAddress {
@@ -83,5 +87,5 @@ export * from "./rooms";
 export * from "./roomTypes";
 export * from "./settings";
 export * from "./customers";
-export * from "./emailTypes";
+export * from "./emailTtemplates";
 export * from "./reviews";

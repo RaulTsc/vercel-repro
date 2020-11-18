@@ -1,7 +1,6 @@
 import React from "react";
 import Slider from "@material-ui/core/Slider";
 import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import grey from "@material-ui/core/colors/grey";
@@ -11,11 +10,16 @@ import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 import { FormattedMessage } from "react-intl";
 import CheckIcon from "@material-ui/icons/Check";
 import Link from "next/link";
+import { Button } from "../common/Button";
+import { getStartedUrl } from "../../../app/helpers/navigation";
+import { useRouter } from "next/router";
+import * as languageService from "../../../app/services/languageService";
+import { LANGUAGE } from "../../../app/interfaces";
 
 const useStyles = makeStyles((theme) => ({
   container: {},
   containerInner: {
-    maxWidth: "1080px",
+    maxWidth: "1400px",
     margin: "0 auto",
     padding: "80px 0px",
     textAlign: "center",
@@ -79,6 +83,10 @@ function CustomThumbComponent(props: any) {
 export const PricingBody = () => {
   const classes = useStyles();
   const [price, setPrice] = React.useState(20);
+  const router = useRouter();
+  const language: LANGUAGE = languageService.getLanguageByPathname(
+    router.pathname
+  );
 
   return (
     <div className={classes.container}>
@@ -124,7 +132,7 @@ export const PricingBody = () => {
               <Typography variant="body1" style={{ marginTop: "-4px" }}>
                 /month
               </Typography>
-              <Link href="/get-started">
+              <Link href={getStartedUrl(language)}>
                 <Button
                   variant="contained"
                   color="primary"

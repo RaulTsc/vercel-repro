@@ -13,7 +13,11 @@ import Tooltip from "@material-ui/core/Tooltip";
 import { FormattedMessage } from "react-intl";
 import MenuItem from "@material-ui/core/MenuItem";
 import Link from "next/link";
-import { ADD_BOOKING_FORM_DIALOG } from "../AddBookingFormDialog/AddBookingFormDialog";
+import AddBookingFormDialog, {
+  ADD_BOOKING_FORM_DIALOG,
+  ICreateBooking,
+  formToApiMapper as mapBookingForApi,
+} from "../AddBookingFormDialog/AddBookingFormDialog";
 import { toggleDialogByName } from "../../../slices/componentsSlice";
 import {
   toggleNavigationDrawer,
@@ -34,6 +38,10 @@ import * as imageService from "../../../services/imageService";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import {
+  createBooking,
+  getBookings,
+} from "../../../slices/adminSlice/bookingsSlice";
 
 const useStyles = makeStyles((theme) => ({
   leftControls: {
@@ -163,7 +171,7 @@ function HeaderBar(props: HeaderBarProps) {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <Link href="/admin/profile">
+              <Link href="/app/admin/profile">
                 <MenuItem style={{ fontSize: 14 }} onClick={handleClose}>
                   <FormattedMessage id="App.common.profile" />
                 </MenuItem>
@@ -181,6 +189,20 @@ function HeaderBar(props: HeaderBarProps) {
           </>
         )}
       </Toolbar>
+
+      <AddBookingFormDialog
+        loading={false}
+        onSubmit={async (booking: ICreateBooking | null) => {
+          await props.createBooking(
+            mapBookingForApi(booking as ICreateBooking)
+          );
+          props.toggleDialogByName({
+            name: ADD_BOOKING_FORM_DIALOG,
+            isOpen: false,
+          });
+          await props.getBookings();
+        }}
+      />
     </AppBar>
   );
 }
@@ -197,6 +219,8 @@ const connector = connect(
     logout,
     changeCurrentCompany,
     getCurrentUser,
+    createBooking,
+    getBookings,
   }
 );
 export default connector(HeaderBar);

@@ -54,7 +54,6 @@ export default async (req, res) => {
       expiresIn: data.expires_in,
     });
   } catch (err) {
-    console.log("got err", err);
     res.status(err.response.status).json(err.response.data);
   }
 };
